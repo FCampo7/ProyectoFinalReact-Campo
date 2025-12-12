@@ -1,13 +1,18 @@
 import styles from "./MainContainer.module.css";
 import fullLogo from "../../assets/Avra-Studio-Full-Logo.png";
+import { useUser } from "../../context/UserContext";
 
 const MainContainer = () => {
+	const { userData } = useUser();
+
 	return (
 		<>
 			<main className={styles.main}>
 				<img width={140} src={fullLogo} alt="Avra Studio Logo" />
 
-				<h3 className={styles.title}>Welcome to Avra Studio!</h3>
+				<h3 className={styles.title}>
+					Welcome to Avra Studio{userData ? " " + userData.name : ""}!
+				</h3>
 
 				<p className={styles.subtitle}>
 					Thank you for visiting our platform. Here you can explore
