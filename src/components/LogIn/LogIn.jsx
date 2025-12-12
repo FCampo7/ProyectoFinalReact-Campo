@@ -61,6 +61,7 @@ const LogIn = () => {
 				<div className={styles.error}>{error && <p>{error}</p>}</div>
 				<div className={styles.buttonsDiv}>
 					<button
+						type="button"
 						className={styles.button}
 						onClick={() => {
 							navigate("/signup");
@@ -73,7 +74,7 @@ const LogIn = () => {
 						type="submit"
 						disabled={loading}
 					>
-						{loading ? "Loging in..." : "Log in"}
+						{loading ? "Logging in..." : "Log in"}
 					</button>
 				</div>
 			</form>

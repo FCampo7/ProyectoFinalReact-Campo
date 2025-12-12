@@ -4,6 +4,7 @@ import { auth } from "../firebase/config";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
+import styles from "../css/loader.module.css";
 
 const UserContext = createContext();
 
@@ -27,7 +28,13 @@ export const UserProvider = ({ children }) => {
 		}
 	};
 
-	if (user === undefined) return <div>Cargando Usuario...</div>;
+	if (user === undefined)
+		return (
+			<div className={styles.centerLoader}>
+				<span className={styles.loader}></span>
+				<p>Checking user...</p>
+			</div>
+		);
 
 	return (
 		<UserContext.Provider value={{ user, setUser, handleLogout }}>
