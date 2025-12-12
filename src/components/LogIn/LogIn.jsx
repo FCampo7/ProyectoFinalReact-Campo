@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../firebase/config";
+import { auth } from "../../firebase/config";
 import styles from "./LogIn.module.css";
-import { doc, getDoc } from "firebase/firestore";
 
 const LogIn = () => {
 	const [email, setEmail] = useState();
@@ -18,24 +17,21 @@ const LogIn = () => {
 		setLoading(true);
 
 		try {
-			const credential = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password
-			);
-
-			const firebaseUser = credential.user;
-
-			const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
-			if (!userDoc.exists()) {
-				setError("No user with this email.");
-				setLoading(false);
-				return;
-			}
+			await signInWithEmailAndPassword(auth, email, password);
 
 			navigate("/products");
 		} catch (err) {
-			setError(err.code);
+			if (err.message.includes("missing-email"))
+				setError("Please enter an email.");
+			else if (err.message.includes("missing-password"))
+				setError("Please enter a password.");
+			else if (err.message.includes("user-not-found"))
+				setError("No user with this email.");
+			else if (err.message.includes("wrong-password"))
+				setError("Wrong password.");
+			else if (err.message.includes("invalid-credential"))
+				setError("Invalid email or password.");
+			else setError(err.message);
 			setLoading(false);
 		}
 	};
