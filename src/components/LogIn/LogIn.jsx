@@ -25,10 +25,10 @@ const LogIn = () => {
 				setError("Please enter an email.");
 			else if (err.message.includes("missing-password"))
 				setError("Please enter a password.");
-			else if (err.message.includes("user-not-found"))
-				setError("No user with this email.");
-			else if (err.message.includes("wrong-password"))
-				setError("Wrong password.");
+			else if (err.message.includes("invalid-email"))
+				setError("Invalid email.");
+			else if (err.message.includes("too-many-requests"))
+				setError("Too many attempts. Please try again later.");
 			else if (err.message.includes("invalid-credential"))
 				setError("Invalid email or password.");
 			else setError(err.message);
