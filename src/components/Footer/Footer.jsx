@@ -33,7 +33,15 @@ const Footer = () => {
 			</div>
 
 			<p className={styles.powered}>
-				Built with ❤️ by Francisco Luis Campo.
+				Built with ❤️ by{" "}
+				<a
+					href="https://fcampo.vercel.app"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Francisco Luis Campo
+				</a>
+				.
 			</p>
 		</footer>
 	);
