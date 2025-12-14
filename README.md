@@ -124,9 +124,12 @@ src/
 ## 📦 Paquetes utilizados
 
 ```bash
-firebase@12.5.0
-lucide-react@0.544.0
-react-router-dom@7.9.5
+firebase@12.6.0,
+lucide-react@0.561.0,
+react@19.2.3,
+react-dom@19.2.3,
+react-hot-toast@2.6.0,
+react-router-dom@7.10.1
 ```
 
 ## 🛠 Instalación
@@ -166,7 +169,7 @@ Email: test@test.com
 Contraseña: test123
 ```
 
-También podés crear tu propia cuenta con Firebase Auth.
+También podés crear tu propia cuenta en la página de registro.
 
 ## 📝 Notas técnicas
 
@@ -178,4 +181,4 @@ También podés crear tu propia cuenta con Firebase Auth.
 
 ## 📄 Licencia
 
-Licenciado bajo la MIT License.
+Licenciado bajo la [MIT License](https://github.com/FCampo7/ProyectoFinalReact-Campo/blob/main/LICENSE).
