@@ -7,14 +7,13 @@ import { db } from "../firebase/config";
 import {
 	collection,
 	getDocs,
-	setDoc,
 	doc,
 	updateDoc,
-	deleteDoc,
 	addDoc,
 	query,
 	where,
 } from "firebase/firestore";
+import { toast } from "react-hot-toast";
 
 export const useCart = () => useContext(CartContext);
 
@@ -128,6 +127,8 @@ function CartProvider({ children }) {
 			syncCartWithFirestore(updated);
 			return updated;
 		});
+
+		toast.success("Product added to cart");
 	};
 
 	// Disminuir en uno la cantidad de un mismo producto
@@ -152,6 +153,8 @@ function CartProvider({ children }) {
 			syncCartWithFirestore(updated);
 			return updated;
 		});
+
+		toast.success("Product removed from cart");
 	};
 
 	// Eliminar producto
@@ -163,6 +166,8 @@ function CartProvider({ children }) {
 			syncCartWithFirestore(updated);
 			return updated;
 		});
+
+		toast.success("Product removed from cart");
 	};
 
 	// Vaciar carrito
@@ -174,6 +179,8 @@ function CartProvider({ children }) {
 			items: [],
 			total: 0,
 		});
+
+		toast.success("Cart cleared");
 	};
 
 	// Cambiar estado del carrito y crear uno nuevo pendiente

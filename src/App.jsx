@@ -9,11 +9,13 @@ import LogIn from "./components/LogIn/LogIn.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Checkout from "./components/MainContainer/Checkout/Checkout.jsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 	return (
 		<UserProvider>
 			<BrowserRouter>
+				<Toaster position="bottom-center" reverseOrder={false} />
 				<NavContainer />
 				<Routes>
 					<Route path="/" element={<MainContainer />} />

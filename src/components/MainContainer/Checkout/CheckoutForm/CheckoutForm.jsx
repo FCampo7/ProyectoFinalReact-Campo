@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./CheckoutForm.module.css";
 import { useCart } from "../../../../context/CartProvider";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const FormField = ({ label, id, type = "text", value, onChange, error }) => {
 	return (
@@ -50,7 +51,7 @@ export default function CheckoutForm() {
 		e.preventDefault();
 		if (validate()) {
 			changeCartStatus("complete");
-			console.log("Valid Card ✔");
+			toast.success("Buy confirmed");
 			navigate("/products");
 		}
 	};
