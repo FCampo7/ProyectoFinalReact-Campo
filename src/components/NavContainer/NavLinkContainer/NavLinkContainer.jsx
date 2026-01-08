@@ -24,27 +24,27 @@ const NavLinkContainer = () => {
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
-			// Cerrar menú hamburguesa si se hace clic fuera
-			if (
-				isHamburger &&
+			// Verificamos que las referencias existan (.current no sea null)
+			// antes de llamar a .contains()
+			const clickOutsideHamburger =
 				refHamburger.current &&
-				!refHamburger.current.contains(event.target) &&
-				isCartOpen &&
-				refCartWidget.current &&
-				!refCartWidget.current.contains(event.target)
-			) {
+				!refHamburger.current.contains(event.target);
+
+			// Si el carrito no está renderizado, lo tratamos como "fuera" por defecto o ignoramos
+			const clickOutsideCart =
+				!refCartWidget.current ||
+				!refCartWidget.current.contains(event.target);
+
+			if (clickOutsideHamburger && clickOutsideCart) {
 				closeAll();
 			}
 		};
 
-		// Escuchar clics en el documento
 		document.addEventListener("mousedown", handleClickOutside);
-
 		return () => {
-			// Limpiar el evento al desmontar
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [isHamburger, isCartOpen]); // Dependencias para que el listener use valores frescos
+	}, [isHamburger, isCartOpen]);
 
 	const toggleCart = () => setIsCartOpen(!isCartOpen);
 	const toggleHamburger = () => setIsHamburger(!isHamburger);
