@@ -22,7 +22,6 @@ const NavLinkContainer = () => {
 		setIsCartOpen(false);
 	};
 
-	// --- LÓGICA DE CLICK OUTSIDE ---
 	useEffect(() => {
 		const handleClickOutside = (event) => {
 			// Cerrar menú hamburguesa si se hace clic fuera
@@ -46,7 +45,6 @@ const NavLinkContainer = () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [isHamburger, isCartOpen]); // Dependencias para que el listener use valores frescos
-	// -------------------------------
 
 	const toggleCart = () => setIsCartOpen(!isCartOpen);
 	const toggleHamburger = () => setIsHamburger(!isHamburger);
